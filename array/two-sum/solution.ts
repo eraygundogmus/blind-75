@@ -1,18 +1,22 @@
 type TypeReturnValue = number[];
-function twoSum(nums: number[], target: number): TypeReturnValue {
+
+export default function twoSum(
+  nums: number[],
+  target: number
+): TypeReturnValue {
   interface NumsObjectType {
     [key: number]: number;
   }
   let numsAsAnObject: NumsObjectType = { ...nums };
 
-  let firstKey, secondKey;
+  let firstKey: any, secondKey: any;
   for (let i = 0; i < nums.length; i++) {
     let diff = target - numsAsAnObject[i];
     firstKey = Object.keys(numsAsAnObject).find(
-      (key) => numsAsAnObject[key] === diff
+      (key) => numsAsAnObject[key as any] === diff
     );
     secondKey = Object.keys(numsAsAnObject).find(
-      (key) => numsAsAnObject[key] + diff === target && key !== firstKey
+      (key) => numsAsAnObject[key as any] + diff === target && key !== firstKey
     );
     if (secondKey && nums[secondKey] + nums[firstKey] === target) break;
   }
